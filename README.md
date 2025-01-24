@@ -54,3 +54,10 @@ Starts the web server that runs Airflow’s UI, typically accessible at http://l
 airflow scheduler
 ```
 It schedules and monitors your DAGs (Directed Acyclic Graphs). This service continuously checks for tasks that need to be executed.
+
+### 8. Access the Web UI 🖥️
+- After starting the webserver, open your browser and go to:
+  
+-- http://localhost:8080
+
+This allows you to access the Airflow UI where you can view your DAGs, task statuses, logs, and manage workflows.
