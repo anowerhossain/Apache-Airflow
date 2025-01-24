@@ -56,8 +56,11 @@ airflow scheduler
 It schedules and monitors your DAGs (Directed Acyclic Graphs). This service continuously checks for tasks that need to be executed.
 
 ### 8. Access the Web UI 🖥️
-- After starting the webserver, open your browser and go to:
-  
--- http://localhost:8080
+- After starting the webserver, open your browser and go to: http://localhost:8080
 
 This allows you to access the Airflow UI where you can view your DAGs, task statuses, logs, and manage workflows.
+
+# Twitter API Acess 
+- API Key \*\*CeYufNW5rXGmu97Qwr6e46QrD\*\*
+- API Key \*\*Secret wygl8WuqcR1Rx8BCoKu9HyBBAkx63sUnLmm2bnRRoFVrhZmLL9\*\*
+
