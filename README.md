@@ -170,3 +170,22 @@ save_csv_task = PythonOperator(
 # Task dependencies
 fetch_tweets_task >> extract_to_df_task >> save_csv_task
 ```
+
+
+## 📅 How to Run the DAG
+- Place the Python script with your DAG definition in the appropriate Airflow directory.
+- Start Airflow scheduler and web server:
+```bash
+airflow scheduler
+airflow webserver
+```
+
+- Visit the Airflow UI (typically at http://localhost:8080).
+- Trigger the twitter_data_extraction DAG manually or set a schedule interval.
+
+📈 Example Output
+The output of this DAG will be a CSV file (tweets.csv) containing tweets related to the query "chatbot for customer service". Each tweet will include information like:
+- Tweet Text
+- Author ID
+- Creation Date
+- Context Annotations
