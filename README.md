@@ -61,11 +61,7 @@ It schedules and monitors your DAGs (Directed Acyclic Graphs). This service cont
 This allows you to access the Airflow UI where you can view your DAGs, task statuses, logs, and manage workflows.
 
 # Twitter API Acess 
-- API Key \*\*CeYufNW5rXGmu97Qwr6e46QrD\*\*
-- API Key \*\*Secret wygl8WuqcR1Rx8BCoKu9HyBBAkx63sUnLmm2bnRRoFVrhZmLL9\*\*
-- Access Token 1856376314254766083-3k4abwUTj2siLq6z1JwQOCsDeY40jw
-- Access Token Secret Miu2jbiUEaOo4l0P0bVVZe4ecdqoSCbffnbaOFzNhTg1d
-- Bearer Token AAAAAAAAAAAAAAAAAAAAACq4wwEAAAAAXQUGSegRTZePfZ3RL9Vdm5B%2Bjpk%3DQX2ODtnbTDUG0ap4rwYo8ZDFmNfRSUdEoeXxpBhOSnFSY5w89A
+- Bearer Token AAAAAAAAAAAAAAAACq4wwEAAAAAXQUGSegRTZePfZ3RL9Vdm5B%2Bjpk%3DQX2ODtnbTDUG0ap4rwYo8ZDFmNfRSUdEoeXxpBhOSnFSY5w89A
 
 
 
