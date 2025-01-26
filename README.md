@@ -60,8 +60,71 @@ It schedules and monitors your DAGs (Directed Acyclic Graphs). This service cont
 
 This allows you to access the Airflow UI where you can view your DAGs, task statuses, logs, and manage workflows.
 
-# Twitter API Acess 
-- Bearer Token AAAAAAAAAAAAAAAACq4wwEAAAAAXQUGSegRTZePfZ3RL9Vdm5B%2Bjpk%3DQX2ODtnbTDUG0ap4rwYo8ZDFmNfRSUdEoeXxpBhOSnFSY5w89A
+
+# Extract Tweets from Twitter API
+- Extract tweets based on a specific query using the Twitter API v2 and store the raw data temporarily. Obtain your Twitter API credentials (Bearer Token) from the Twitter Developer Portal.
+
+Set Up Twitter API Credentials 🔑
+
+## 📋 DAG Steps
+Step 1: Create Twitter API Headers 📝
+
+- The first step involves setting up the authentication headers needed to make requests to the Twitter API.
+```python
+def create_headers(bearer_token):
+    return {
+        "Authorization": f"Bearer {bearer_token}",
+    }
+```
+
+Step 2: Fetch Tweets from the API 📡
+
+- In this step, a request is sent to Twitter's search/recent API endpoint to fetch tweets related to a specific query. The response is captured and returned as JSON.
+```python
+def fetch_tweets(query, max_results=10):
+    headers = create_headers(BEARER_TOKEN)
+    params = {
+        "query": f"{query} lang:en",
+        "tweet.fields": "text,author_id,created_at, context_annotations",
+        "max_results": max_results,
+    }
+    response = requests.get(SEARCH_URL, headers=headers, params=params)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error: {response.status_code}, {response.text}")
+        return None
+```
 
 
+Step 3: Extract Tweets into a DataFrame 📊
 
+- Once the tweets are fetched, this step converts the JSON response into a pandas DataFrame for easy data manipulation.
+
+```python
+def extract_tweets_to_dataframe(query, max_results=1):
+    data = fetch_tweets(query, max_results)
+    if data and "data" in data:
+        tweets = data["data"]
+        df = pd.DataFrame(tweets)
+        print("Fetched Tweets:")
+        print(df.head())
+        return df
+    else:
+        print("No tweets found or error occurred.")
+        return None
+```
+
+
+Step 4: Save DataFrame to CSV 💾
+
+- This step saves the extracted tweets into a CSV file for future analysis.
+```python
+def save_to_csv(dataframe, filename):
+    if dataframe is not None:
+        dataframe.to_csv(filename, index=False)
+        print(f"Tweets saved to {filename}")
+    else:
+        print("No data to save.")
+```
