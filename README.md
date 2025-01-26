@@ -130,3 +130,43 @@ def save_to_csv(dataframe, filename):
 ```
 
 # 🐳 Airflow DAG Implementation
+
+```python
+from airflow import DAG
+from airflow.operators.python_operator import PythonOperator
+from datetime import datetime
+
+# Define your DAG
+dag = DAG(
+    'twitter_data_extraction',
+    description='Fetch tweets from Twitter API and save to CSV',
+    schedule_interval=None,  # Define your schedule, e.g., '@daily'
+    start_date=datetime(2025, 1, 27),
+    catchup=False,
+)
+
+# Define the tasks
+fetch_tweets_task = PythonOperator(
+    task_id='fetch_tweets',
+    python_callable=fetch_tweets,
+    op_args=["chatbot for customer service", 5],  # Query and max results
+    dag=dag,
+)
+
+extract_to_df_task = PythonOperator(
+    task_id='extract_to_dataframe',
+    python_callable=extract_tweets_to_dataframe,
+    op_args=["chatbot for customer service", 5],  # Query and max results
+    dag=dag,
+)
+
+save_csv_task = PythonOperator(
+    task_id='save_to_csv',
+    python_callable=save_to_csv,
+    op_args=[extract_to_df_task.output, "tweets.csv"],  # DataFrame and file name
+    dag=dag,
+)
+
+# Task dependencies
+fetch_tweets_task >> extract_to_df_task >> save_csv_task
+```
