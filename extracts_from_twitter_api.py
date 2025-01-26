@@ -19,7 +19,7 @@ def fetch_tweets(query, max_results=10):
     headers = create_headers(BEARER_TOKEN)
     params = {
         "query": query,
-        "tweet.fields": "text,author_id,created_at",  # Customize fields as needed
+        "tweet.fields": "text,author_id,created_at,context_annotations",  # Customize fields as needed
         "max_results": max_results,  # Max: 100
     }
     response = requests.get(SEARCH_URL, headers=headers, params=params)
