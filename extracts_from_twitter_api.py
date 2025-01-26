@@ -26,6 +26,10 @@ def fetch_tweets(query, max_results=10):
 
     if response.status_code == 200:
         return response.json()
+    elif response.status_code == 429:
+        print("Rate limit exceeded. Waiting for 15 minutes...")
+        time.sleep(15 * 60)  # Wait for 15 minutes
+        return fetch_tweets(query, max_results)
     else:
         print(f"Error: {response.status_code}, {response.text}")
         return None
